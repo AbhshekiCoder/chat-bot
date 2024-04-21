@@ -82,10 +82,12 @@ function App(){
                 //appendMessage('user', userInput);
                 respondToUser(userInput);
                 console.log(userInput);
+                document.getElementById("result").innerHTML = userInput;
                 
             }
             function respondToUser(userInput) {
               const response = responses[userInput] || responses["default"];
+              document.getElementById("result").innerHTML = response;
              
               console.log(response);
               if('speechSynthesis' in window){
