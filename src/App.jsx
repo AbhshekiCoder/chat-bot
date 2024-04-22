@@ -54,10 +54,11 @@ function App(){
 
           }
          else if(chat === "open instagram"){
-          if(navigator.appVersion.indexOf("Win") != -1){
-            console.log("window");
-
-          }
+          if (/Android/.test(navigator.userAgent)) {
+            document.getElementById("result").innerHTML = "Android";
+            alert("android");
+            
+        }
           }
           else{
             
