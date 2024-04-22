@@ -54,6 +54,7 @@ function App(){
 
           }
          else if(chat === "open instagram"){
+         const platform = window.navigator?.userAgentData?.platform || window.navigator.platform;
           const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
           if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
             alert("ios");
