@@ -54,7 +54,7 @@ function App(){
 
           }
          else if(chat === "open instagram"){
-          if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+          if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
             alert("ios");
 
           }
