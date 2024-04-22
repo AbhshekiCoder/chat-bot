@@ -54,7 +54,7 @@ function App(){
             }
             else if (/Android/.test(navigator.userAgent)) {
   
-              window.location.href = "whatsapp://";
+              window.location.href = "whatsapp://send?phone=6266834504";
               
                }
                else{
