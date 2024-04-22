@@ -1,6 +1,7 @@
 function App(){
   function chatbot(){
     console.log("hello");
+    
     function getVoices(){
       let voices = speechSynthesis.getVoices();
       if(!voices.length){
@@ -32,7 +33,7 @@ function App(){
          
       } 
       recongnization.onresult = (e) =>{
-   
+        var Whatsapp;
           var transcript = e.results[0][0].transcript;
           var data =  transcript.toLowerCase();
           var chat = data.replace(/[^a-zA-Z0-9 ]/g,'');
@@ -42,7 +43,7 @@ function App(){
         
           
           if(chat === "open whatsapp" || chat === "open my whatsapp" ||chat === "please open whatsapp"){
-            window.location.href = "whatsapp://";
+            window.location.href = "whatsapp://"
             return;
 
           }
@@ -53,9 +54,10 @@ function App(){
 
           }
          else if(chat === "open instagram"){
-            window.location.href = "instagram://";
-            return;
+          if(navigator.appVersion.indexOf("Win") != -1){
+            console.log("window");
 
+          }
           }
           else{
             
