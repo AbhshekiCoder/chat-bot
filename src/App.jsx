@@ -54,11 +54,22 @@ function App(){
 
           }
          else if(chat === "open instagram"){
+          if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+            alert("ios");
+
+          }
+          else if(windowsPlatforms.includes(platform)){
+            alert("window");
+          }
           if (/Android/.test(navigator.userAgent)) {
+
             document.getElementById("result").innerHTML = "Android";
             alert("android");
-            
-        }
+             }
+             else{
+              alert("window");
+
+             }
           }
           else{
             
