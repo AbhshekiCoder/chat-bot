@@ -43,8 +43,24 @@ function App(){
         
           
           if(chat === "open whatsapp" || chat === "open my whatsapp" ||chat === "please open whatsapp"){
-            window.location.href = "whatsapp://"
-            return;
+            const platform = window.navigator?.userAgentData?.platform || window.navigator.platform;
+            const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
+            if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
+               alert("ios")
+  
+            }
+            else if(windowsPlatforms.includes(platform)){
+              alert("window");
+            }
+            else if (/Android/.test(navigator.userAgent)) {
+  
+              window.location.href = "intent://whatsapp.com/_n/mainfeed/#Intent;package=com.whatsapp.android;scheme=https;end";
+              
+               }
+               else{
+                alert("window");
+  
+               }
 
           }
           else if(chat === "open facebook" || chat === "open my facebook" ||chat === "please open facebook"){
@@ -57,16 +73,16 @@ function App(){
          const platform = window.navigator?.userAgentData?.platform || window.navigator.platform;
           const windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"];
           if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
-            alert("ios");
+             
 
           }
           else if(windowsPlatforms.includes(platform)){
             alert("window");
           }
-          if (/Android/.test(navigator.userAgent)) {
+          else if (/Android/.test(navigator.userAgent)) {
 
-            document.getElementById("result").innerHTML = "Android";
-            alert("android");
+            window.location.href = "intent://instagram.com/_n/mainfeed/#Intent;package=com.instagram.android;scheme=https;end";
+            
              }
              else{
               alert("window");
