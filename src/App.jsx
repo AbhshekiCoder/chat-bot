@@ -91,7 +91,7 @@ function App(){
           }
           else if(chat === "open camera"){
             const intent = "android.media.action.IMAGE_CAPTURE";
-            window.location.href = "intent:${intent}#Intent;package=com.android.camera;scheme=content;end";
+            window.location.href = `intent:${intent}#Intent;package=com.android.camera;scheme=content;end`;
           }
           else{
             
