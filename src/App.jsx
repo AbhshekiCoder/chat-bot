@@ -54,7 +54,7 @@ function App(){
             }
             else if (/Android/.test(navigator.userAgent)) {
   
-              window.location.href = "intent://whatsapp.com/_n/mainfeed/#Intent;package=com.whatsapp.android;scheme=https;end";
+              window.location.href = "whatsapp://";
               
                }
                else{
