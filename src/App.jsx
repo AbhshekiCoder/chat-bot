@@ -1,6 +1,6 @@
 function App(){
+  
   function chatbot(){
-    console.log("hello");
     
     function getVoices(){
       let voices = speechSynthesis.getVoices();
@@ -90,59 +90,162 @@ function App(){
              }
           }
           else if(chat === "open camera"){
-            const intent = "android.media.action.IMAGE_CAPTURE";
+           
             try{
-              window.location.href = `intent:${intent}#Intent;package=com.android.camera;scheme=content;end`;
+              window.location.href = "intent:android.media.action.IMAGE_CAPTURE#Intent;package=com.android.camera;scheme=content;end";
 
             }
             catch(err){
-              alert(err.message);
+              console.log(err.message);
             }
             
           }
           else{
             
             console.log(chat)
-            const responses = {
-              "hello.": "Hi there! How can I assist you today?",
-              "hello": "Hi there! How can I assist you today?",
-              "coding hubs": "Here you will get Notes, Ebooks, project source Code, Interview questions. visit Coding Hubs.<a href='https://thecodinghubs.com' target='_blank'>Visit Website</a>",
-              "how are you": "I'm just a bot, but I'm here to help you!",
-              "need help": "How I can help you today?",
-              "bye": "Goodbye! Have a great day!",
-              "default": "i didn't understand",
-              "expert": "",
-              "no": "Okay, if you change your mind just let me know!",
-              "hii" : "Hi Whats'up",
-              "hi" : "Hi Whats'up",
-              "hii." : "Hi Whats'up",
-              "you are single": "yes i am  single",
+            const userMessage = [
+              ["hi", "hey", "hello"],
+              ["sure", "yes", "no"],
+              ["are you genious", "are you nerd", "are you intelligent"],
+              ["i hate you", "i dont like you"],
+              ["how are you", "how is life", "how are things", "how are you doing"],
+              ["how is corona", "how is covid 19", "how is covid19 situation"],
+              ["what are you doing", "what is going on", "what is up"],
+              ["how old are you"],
+              ["who are you", "are you human", "are you bot", "are you human or bot"],
+              ["who created you", "who made you", "who is your creator"],
+            
+              [
+                "your name please",
+                "your name",
+                "may i know your name",
+                "what is your name",
+                "what call yourself"
+              ],
+              ["i love you"],
+              ["happy", "good", "fun", "wonderful", "fantastic", "cool", "very good"],
+              ["bad", "bored", "tired"],
+              ["help me", "tell me story", "tell me joke"],
+              ["ah", "ok", "okay", "nice", "welcome"],
+              ["thanks", "thank you"],
+              ["what should i eat today"],
+              ["bro"],
+              ["what", "why", "how", "where", "when"],
+              ["corona", "covid19", "coronavirus"],
+              ["you are funny"],
+              ["i dont know"],
+              ["boring"],
+              ["im tired"]
+            ];
+            const botReply = [
+              ["Hello!", "Hi!", "Hey!", "Hi there!"],
+              ["Okay"],
+              ["Yes I am! "],
+              ["I'm sorry about that. But I like you dude."],
+              [
+                "Fine... how are you?",
+                "Pretty well, how are you?",
+                "Fantastic, how are you?"
+              ],
+              ["Getting better. There?", "Somewhat okay!", "Yeah fine. Better stay home!"],
+            
+              [
+                "Nothing much",
+                "About to go to sleep",
+                "Can you guess?",
+                "I don't know actually"
+              ],
+              ["I am always young."],
+              ["I am just a bot", "I am a bot. What are you?"],
+              ["Sabitha Kuppusamy"],
+              ["I am nameless", "I don't have a name"],
+              ["I love you too", "Me too"],
+              ["Have you ever felt bad?", "Glad to hear it"],
+              ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
+              ["What about?", "Once upon a time..."],
+              ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
+              ["You're welcome"],
+              ["Briyani", "Burger", "Sushi", "Pizza"],
+              ["Dude!"],
+              ["Yes?"],
+              ["Please stay home"],
+              ["Glad to hear it"],
+              ["Say something interesting"],
+              ["Sorry for that. Let's chat!"],
+              ["Take some rest, Dude!"]
+            ];
+       
+        let string = chat;
+        
+        let item;
+        let items;
+        for (let x = 0; x < userMessage.length; x++) {
+          for (let y = 0; y <botReply.length; y++) {
+            if (userMessage[x][y] == string) {
               
-              
-            };
-            const userInput = chat;
-            if (userInput !== '') {
-                //appendMessage('user', userInput);
-                respondToUser(userInput);
-                console.log(userInput);
-                document.getElementById("result").innerHTML = userInput;
-                
-            }
-            function respondToUser(userInput) {
-              const response = responses[userInput] || responses["default"];
-              document.getElementById("result").innerHTML = response;
+              items = botReply[x];
+            
+              item = items[Math.floor(Math.random() * items.length)];
              
-              console.log(response);
+            }
+          }
+        }
+        if(item){
+          document.getElementById("result").innerHTML = item;
+          if('speechSynthesis' in window){
+            let voices = getVoices();
+            let rate = 1.2, pitch = 1, volume = 1;
+            let text = item;
+            speak(text, voices[1],rate,pitch,volume);
+        }
+        else{
+            console.log("error");
+        
+        }
+        
+        }
+        else{
+          let expectedReply = [
+            [
+              "Good Bye, dude",
+              "Bye, See you!",
+              "Dude, Bye. Take care of your health in this situation."
+            ],
+            ["Good Night, dude", "Have a sound sleep", "Sweet dreams"],
+            ["Have a pleasant evening!", "Good evening too", "Evening!"],
+            ["Good morning, Have a great day!", "Morning, dude!"],
+            ["Good Afternoon", "Noon, dude!", "Afternoon, dude!"]
+          ];
+          let expectedMessage = [
+            ["bye", "tc", "take care"],
+            ["night", "good night"],
+            ["evening", "good evening"],
+            ["morning", "good morning"],
+            ["noon"]
+          ];
+        
+          for (let x = 0; x < expectedMessage.length; x++) {
+            if (expectedMessage[x].includes(string)) {
+              items = expectedReply[x];
+              item = items[Math.floor(Math.random() * items.length)];
+               
               if('speechSynthesis' in window){
                 let voices = getVoices();
                 let rate = 1.2, pitch = 1, volume = 1;
-                let text = response;
+                let text = item;
                 speak(text, voices[1],rate,pitch,volume);
             }
             else{
                 console.log("error");
             
             }
+            document.getElementById("result").innerHTML = item;
+            }
+          }
+         
+        }
+        
+           
              
             }
          
@@ -159,10 +262,10 @@ function App(){
           
          
   
-       }
+       
        recongnization.start();
 
-  }
+        }
   
   
       
